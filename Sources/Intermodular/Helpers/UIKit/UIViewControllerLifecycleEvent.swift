@@ -26,6 +26,8 @@ struct _UIViewControllerLifecycleEventView<Content: View>: UIViewControllerRepre
         var onWillLayoutSubviews: (() -> Void)?
         var onLayoutSubviews: (() -> Void)?
     }
+  
+  let rootView: Content
     
     class UIViewControllerType: UIHostingController<Content> {
         var callbacks: Callbacks?
@@ -74,7 +76,7 @@ struct _UIViewControllerLifecycleEventView<Content: View>: UIViewControllerRepre
     }
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
-        UIViewControllerType()
+      UIViewControllerType(rootView: rootView)
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
